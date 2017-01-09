@@ -63,7 +63,13 @@ class Triclust(object):
         self.inner_threshold = None
         self.verbose = verbose
 
+
     def fit(self, data):
+        self.fit_predict(data)
+        return self
+
+
+    def fit_predict(self, data):
         """ Starts to iterate clustering the data """
 
         if self.verbose:
@@ -107,6 +113,8 @@ class Triclust(object):
         bound_set = tqdm(boundary_indexes, desc="Clustering boundary points ...") if self.verbose else boundary_indexes
         for i in bound_set:
             self.complete_clustering[i] = self._cluster_majority(i)
+
+        return self.complete_clustering
 
 
     def predict(self):

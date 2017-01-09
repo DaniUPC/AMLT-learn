@@ -521,6 +521,7 @@ class Environment(object):
         """ Starts to iterate clustering the data """
         for t in tqdm(range(0, self.max_t)):
             self._perform_step(t)
+        return self
 
 
     def predict(self, X):
